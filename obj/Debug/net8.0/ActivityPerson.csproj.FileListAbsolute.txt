@@ -1,0 +1,16 @@
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\obj\Debug\net8.0\ActivityPerson.csproj.AssemblyReference.cache
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\obj\Debug\net8.0\Avalonia\Resources.Inputs.cache
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\obj\Debug\net8.0\Avalonia\resources
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\obj\Debug\net8.0\ActivityPerson.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\obj\Debug\net8.0\ActivityPerson.AssemblyInfoInputs.cache
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\obj\Debug\net8.0\ActivityPerson.AssemblyInfo.cs
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\obj\Debug\net8.0\ActivityPerson.csproj.CoreCompileInputs.cache
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\obj\Debug\net8.0\Avalonia\ActivityPerson.dll
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\obj\Debug\net8.0\Avalonia\ActivityPerson.pdb
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\obj\Debug\net8.0\refint\Avalonia\ActivityPerson.dll
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\bin\Debug\net8.0\ActivityPerson.deps.json
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\bin\Debug\net8.0\ActivityPerson.runtimeconfig.json
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\bin\Debug\net8.0\ActivityPerson.dll
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\bin\Debug\net8.0\ActivityPerson.pdb
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\obj\Debug\net8.0\ActivityPerson.genruntimeconfig.cache
+C:\Users\fandi\source\repos\ActivityPerson\ActivityPerson\obj\Debug\net8.0\ref\ActivityPerson.dll
