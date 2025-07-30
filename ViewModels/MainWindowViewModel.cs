@@ -9,8 +9,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace ActivityPerson.ViewModels
 {
@@ -166,8 +168,69 @@ namespace ActivityPerson.ViewModels
                 }
             }
         }
+        /*
+         public async void AddTaskButton_Click()
+         {
+             try
+             {
+                 var dialog = new TaskDialogWindow
+                 {
+                     DataContext = new TaskDialogViewModel(this)
+                 };
 
-        public async void AddTaskButton_Click()
+                 Window owner = GetMainWindow();
+                 await dialog.ShowDialog(owner);
+
+                 // Результат обрабатывается внутри TaskDialogViewModel
+             }
+             catch (Exception ex)
+             {
+                 ConnectionStatus = $"Ошибка: {ex.Message}";
+             }
+         }
+
+         private Window GetMainWindow()
+         {
+             if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+             {
+                 return desktop.Windows.FirstOrDefault() ?? desktop.MainWindow;
+             }
+             return null;
+         }
+
+         private ICommand _viewTasksCommand;
+         public ICommand ViewTasksCommand => _viewTasksCommand ??= new RelayCommand(ExecuteViewTasks);
+
+         public async void ExecuteViewTasks()
+         {
+             try
+             {
+                 var window = new TaskListViewWindow
+                 {
+                     DataContext = new TaskListViewModel()
+                 };
+
+                 if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+                 {
+                     await window.ShowDialog(desktop.MainWindow);
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Debug.WriteLine($"Ошибка: {ex}");
+                 ConnectionStatus = $"Ошибка открытия: {ex.Message}";
+             }
+         }
+
+        */
+
+        private ICommand _addTaskCommand;
+        private ICommand _viewTasksCommand;
+
+        public ICommand AddTaskCommand => _addTaskCommand ??= new RelayCommand(ExecuteAddTask);
+        public ICommand ViewTasksCommand => _viewTasksCommand ??= new RelayCommand(ExecuteViewTasks);
+
+        private void ExecuteAddTask()
         {
             try
             {
@@ -177,16 +240,13 @@ namespace ActivityPerson.ViewModels
                 };
 
                 Window owner = GetMainWindow();
-                await dialog.ShowDialog(owner);
-
-                // Результат обрабатывается внутри TaskDialogViewModel
+                dialog.ShowDialog(owner);
             }
             catch (Exception ex)
             {
                 ConnectionStatus = $"Ошибка: {ex.Message}";
             }
         }
-
         private Window GetMainWindow()
         {
             if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
@@ -195,11 +255,48 @@ namespace ActivityPerson.ViewModels
             }
             return null;
         }
+        private void ExecuteViewTasks()
+        {
+            try
+            {
+                var window = new TaskListViewWindow
+                {
+                    DataContext = new TaskListViewModel()
+                };
 
+                if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+                {
+                    window.ShowDialog(desktop.MainWindow);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Ошибка: {ex}");
+                ConnectionStatus = $"Ошибка открытия: {ex.Message}";
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+    }
+
+    public class RelayCommand : ICommand
+    {
+        private readonly Action _execute;
+        private readonly Func<bool> _canExecute;
+
+        public event EventHandler CanExecuteChanged;
+
+        public RelayCommand(Action execute, Func<bool> canExecute = null)
+        {
+            _execute = execute;
+            _canExecute = canExecute;
+        }
+
+        public bool CanExecute(object parameter) => _canExecute?.Invoke() ?? true;
+
+        public void Execute(object parameter) => _execute();
     }
 }

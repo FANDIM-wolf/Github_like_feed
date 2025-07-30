@@ -13,15 +13,20 @@
 
     <Grid RowDefinitions="Auto,Auto,*">
         <!-- Кнопка для добавления задачи -->
-        <Button Grid.Row="0"
-                Content="Добавить задачу на сегодня"
-                Width="200"
-                Height="30"
-                Margin="10"
-                HorizontalAlignment="Right"
-                Background="#40C463"
-                Foreground="White"
-                Name="AddTaskButton"/>
+		<StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+			<Button Content="Добавить задачу"
+                    Command="{Binding AddTaskCommand}"
+                    Width="150"
+                    Background="#40C463"
+                    Foreground="White"/>
+
+			<Button Content="Просмотр задач"
+                    Command="{Binding ViewTasksCommand}"
+                    Width="150"
+                    Background="#30A14E"
+                    Foreground="White"/>
+		</StackPanel>
+		
                 
         <!-- Статус подключения -->
         <TextBlock Grid.Row="1"

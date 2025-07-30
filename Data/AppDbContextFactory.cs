@@ -8,7 +8,7 @@ namespace ActivityPerson.Data
         public AppDbContext CreateDbContext(string[] args = null)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseNpgsql("Host=localhost;Port=port;Database=ActivityDB;Username=postgres;Password=password");
+            optionsBuilder.UseNpgsql("Host=127.0.0.1;Port=5432;Database=ActivityDB;Username=postgres;Password=474290");
             return new AppDbContext(optionsBuilder.Options);
         }
     }

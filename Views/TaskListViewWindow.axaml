@@ -1,0 +1,104 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="ActivityPerson.Views.TaskListViewWindow"
+        Title="Просмотр задач"
+        Width="600"
+        Height="500">
+
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<!-- Статус -->
+		<TextBlock Grid.Row="0"
+                   Text="{Binding StatusMessage}"
+                   Margin="0,0,0,10"
+                   Foreground="Gray"
+                   FontStyle="Italic"/>
+
+		<!-- Список дней с задачами -->
+		<ItemsControl Grid.Row="1"
+                      ItemsSource="{Binding DaysWithTasks}"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<Border Margin="0,0,0,10"
+                            Padding="10"
+                            BorderBrush="#CCCCCC"
+                            BorderThickness="1"
+                            CornerRadius="5">
+						<Grid>
+							<!-- Разделение на заголовок и содержимое -->
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<!-- Заголовок -->
+								<RowDefinition Height="*"/>
+								<!-- Содержимое -->
+							</Grid.RowDefinitions>
+
+							<!-- Блок заголовка -->
+							<Grid Grid.Row="0">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+
+								<!-- Дата -->
+								<TextBlock Grid.Column="0"
+                                           Text="{Binding DisplayDate}"
+                                           FontWeight="Bold"
+                                           Margin="0,0,10,0"
+                                           VerticalAlignment="Center"/>
+
+								<!-- Количество задач -->
+								<TextBlock Grid.Column="1"
+                                           Text="{Binding TaskCountText}"
+                                           FontStyle="Italic"
+                                           VerticalAlignment="Center"/>
+
+								<!-- Уровень активности -->
+								<Border Grid.Column="2"
+                                        Width="20"
+                                        Height="20"
+                                        Background="{Binding ActivityLevel, Converter={StaticResource ActivityLevelToBrush}}"
+                                        BorderBrush="Black"
+                                        BorderThickness="1"
+                                        CornerRadius="3"/>
+							</Grid>
+
+							<!-- Блок задач -->
+							<ScrollViewer Grid.Row="1"
+                                          Margin="5,5,5,0"
+                                          VerticalScrollBarVisibility="Auto">
+								<ItemsControl ItemsSource="{Binding Tasks}">
+									<ItemsControl.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Description}"
+                                                       Margin="5,2"
+                                                       TextWrapping="Wrap"/>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+							</ScrollViewer>
+						</Grid>
+					</Border>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
+
+		<!-- Кнопка закрытия -->
+		<Button Grid.Row="2"
+                Content="Закрыть"
+                Width="100"
+                HorizontalAlignment="Center"
+                Margin="0,20"
+                Click="CloseButton_Click"/>
+	</Grid>
+</Window>

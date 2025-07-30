@@ -18,7 +18,7 @@ namespace ActivityPerson.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Host=host;Port=port;Database=ActivityDB;Username=postgres;Password=password");
+                optionsBuilder.UseNpgsql("Host=127.0.0.1;Port=5432;Database=ActivityDB;Username=postgres;Password=474290");
             }
         }
 
